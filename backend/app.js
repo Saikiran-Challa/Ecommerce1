@@ -65,3 +65,13 @@ process.on("unhandledRejection",(err)=>{
         process.exit(1);
     })
 })
+
+const path = require("path");
+
+// Serve React build folder
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
+
